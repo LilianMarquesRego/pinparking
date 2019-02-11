@@ -5,6 +5,7 @@
 - Run __composer install__
 - Run __php artisan key:generate__
 - Run __php artisan migrate:fresh__
+- Run npm install
 
 
 ## Set up
