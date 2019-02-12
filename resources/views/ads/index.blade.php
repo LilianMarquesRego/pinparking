@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container py-3">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -59,19 +59,37 @@
         </nav>
     </div>
 
-    <div style="background: #dd3d31; height:20rem;">
+    <div style="background: #dd3d31; height:20rem;" class="mb-5">
         Parking Rental
     </div>
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                asdf
+                <div class="item-preview mb-5">
+                    <a class="item-preview-img box-shadow-lg d-block mb-3" href="https://placeholder.com">
+                        <img class="img-fluid" src="https://via.placeholder.com/600x400.png?text=Visit+WhoIsHostingThis.com" alt="parking slot">
+                    </a>
+                    <div class="item-preview-title">Creative</div>
+                    <div class="item-preview-description">A one page creative theme</div>
+                </div>
             </div>
             <div class="col-md-4">
-                asdf
+                <div class="item-preview mb-5">
+                    <a class="item-preview-img box-shadow-lg d-block mb-3" href="https://placeholder.com">
+                        <img class="img-fluid" src="https://via.placeholder.com/600x400.png?text=Visit+WhoIsHostingThis.com" alt="parking slot">
+                    </a>
+                    <div class="item-preview-title">Creative</div>
+                    <div class="item-preview-description">A one page creative theme</div>
+                </div>
             </div>
             <div class="col-md-4">
-                asdf
+                <div class="item-preview mb-5">
+                    <a class="item-preview-img box-shadow-lg d-block mb-3" href="https://placeholder.com">
+                        <img class="img-fluid" src="https://via.placeholder.com/600x400.png?text=Visit+WhoIsHostingThis.com" alt="parking slot">
+                    </a>
+                    <div class="item-preview-title">Creative</div>
+                    <div class="item-preview-description">A one page creative theme</div>
+                </div>
             </div>
         </div>
     </div>
