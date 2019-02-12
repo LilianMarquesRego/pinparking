@@ -13,38 +13,4 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-////////////////////////////////////////////////////////////////////////////@at-root
-
-.item-preview {
-    position: relative;
-}
-
-.item-preview a.item-preview-img {
-    transition: .15s box-shadow,.15s transform;
-    border-radius: .5rem;
-    box-shadow: 0 2rem 1.5rem -1.5rem rgba(33,37,41,.15), 0 0 1.5rem 0.5rem rgba(33,37,41,.05);
-    overflow: hidden;
-}
-
-.img-fluid {
-    max-width: 100%;
-    height: auto;
-}
-
-img {
-    vertical-align: middle;
-    border-style: none;
-}
-
-a {
-    color: #dd3d31;
-    text-decoration: none;
-    background-color: transparent;
-}
-
-@media (min-width: 992px) {
-  .item-preview a.item-preview-img:hover {
-      transform: translateY(-0.25rem);
-      box-shadow: 0 2.25rem 1.5rem -1.5rem rgba(33,37,41,.3),0 0 1.5rem .5rem rgba(33,37,41,.05)!important;
-  }
-}
+@import 'template';

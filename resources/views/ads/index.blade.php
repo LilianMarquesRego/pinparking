@@ -13,7 +13,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -47,14 +49,12 @@
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>
+                </ul>
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a class="nav-link" href="#">About us</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
             </div>
         </nav>
     </div>
@@ -93,7 +93,29 @@
             </div>
         </div>
     </div>
-    {{ $ads->first()->address }}
-</body>
 
+    {{ $ads->first()->address }}
+    <footer>
+        <div class="footer-social my-5">
+            <div class="container">
+                <div class="d-flex justify-content-center">
+                    <a class="footer-social-link d-inline-flex mx-3 justify-content-center align-items-center text-white rounded-circle shadow btn btn-twitter"
+                        href="#">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="footer-social-link d-inline-flex mx-3 justify-content-center align-items-center text-white rounded-circle shadow btn btn-facebook"
+                        href="#">
+                        <i class="fab fa-facebook-f"></i>
+                        </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-main bg-dark py-5 small">
+            <div class="container">
+                <a href="#">Driveway Rental</a> is a project created and maintained by
+                <a href="#">Us</a>.
+            </div>
+        </div>
+    </footer>
+</body>
 </html>
