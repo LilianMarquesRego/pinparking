@@ -35,9 +35,9 @@ class AdController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        Ad::create(request()->all());
     }
 
     /**
@@ -48,7 +48,9 @@ class AdController extends Controller
      */
     public function show(Ad $ad)
     {
-        //
+        return view('ads.show', [
+            'ad' => $ad,
+        ]);
     }
 
     /**
