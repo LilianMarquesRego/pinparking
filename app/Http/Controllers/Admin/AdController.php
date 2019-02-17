@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Ad;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class AdController extends Controller
 {
@@ -38,14 +40,19 @@ class AdController extends Controller
      */
     public function store()
     {
-        // dd(request()->except('_token', 'image'));
-        $path = request()->file('image')->store('public');
+        $path = request()->file('image')->store('/', 'public');
 
-        dd($path);
+        Image::make(request()->file('image'))->resize(600, 400)
+            ->save(Storage::disk('public')->path('small/') . $path);
 
-        $cover = $request->file('image');
-        
-        Ad::create(request()->except('_token', 'image'));
+        $ad = request()->except('_token', 'image') + [
+            'image' => $path,
+            'owner_id' => 1,
+        ];
+
+        Ad::create($ad);
+
+        return redirect('ads');
     }
 
     /**

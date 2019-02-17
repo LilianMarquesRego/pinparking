@@ -47,6 +47,8 @@ class ManageAdsTest extends TestCase
     {
         $this->withoutExceptionHandling();
         Storage::fake('public');
+
+        Storage::disk('public')->makeDirectory('small');
         
         $file = UploadedFile::fake()->image('parking-space.jpg');
         
@@ -59,5 +61,8 @@ class ManageAdsTest extends TestCase
         $this->assertDatabaseHas('ads', [
             'address' => $ad['address'],
         ]);
+
+        Storage::disk('public')->assertExists($file->hashName());
+        Storage::disk('public')->assertExists('small/' . $file->hashName());
     }
 }

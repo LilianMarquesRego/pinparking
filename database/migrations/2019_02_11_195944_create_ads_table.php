@@ -18,8 +18,8 @@ class CreateAdsTable extends Migration
             $table->unsignedInteger('owner_id');
             $table->text('description')->nullable();
             $table->string('address');
-            $table->decimal('price', 4, 2);
-            $table->string('filepath')->nullable();
+            $table->decimal('price', 10, 2);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
