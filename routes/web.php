@@ -1,15 +1,9 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::resource('ads', 'AdController');
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::redirect('/', 'ads');
 
-Auth::routes();
+Route::get('ads', 'AdController@index');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('admin/ads', 'Admin\AdController');

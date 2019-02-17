@@ -2,10 +2,11 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Ad;
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
 
 class ManageAdsTest extends TestCase
 {
@@ -33,11 +34,30 @@ class ManageAdsTest extends TestCase
     public function an_owner_can_register_a_parking_space()
     {
         $ad = factory(Ad::class)->make();
-
+        
         $this->post(route('ads.store'), $ad->toArray());
 
         $this->assertDatabaseHas('ads', [
             'address' => $ad->address,
+        ]);
+    }
+    
+    /** @test */
+    public function an_owner_can_upload_an_image()
+    {
+        $this->withoutExceptionHandling();
+        Storage::fake('public');
+        
+        $file = UploadedFile::fake()->image('parking-space.jpg');
+        
+        $ad = factory(Ad::class)->make();
+
+        $ad = $ad->toArray() + ['image' => $file];
+
+        $this->post(route('ads.store'), $ad);
+
+        $this->assertDatabaseHas('ads', [
+            'address' => $ad['address'],
         ]);
     }
 }
