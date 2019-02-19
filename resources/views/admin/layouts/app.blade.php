@@ -28,5 +28,7 @@
        @yield('content')
 
        @include ('admin.layouts.footer')
+
+       @yield ('javascript')
 </body>
 </html>
