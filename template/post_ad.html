@@ -80,6 +80,16 @@
                         <input type="text" class="form-control" id="address" name="address">
                     </div>
 
+                    <div class="form-group">
+                        <label for="latitude">Latitude</label>
+                        <input type="text" class="form-control" id="latitude" name="latitude">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="longitude">Longitude</label>
+                        <input type="text" class="form-control" id="longitude" name="longitude">
+                    </div>
+
                     <div class="form-group" style="margin-bottom:1.5rem">
                         <label for="image">Upload an image</label>
                         <input type="file" class="form-control-file" id="image" name="image">
@@ -90,7 +100,8 @@
             </div>
         </div>
     </div>
-    
+
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -100,6 +111,44 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"
         integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp"
         crossorigin="anonymous"></script>
-</body>
+
+
+    <script>
+        let autocomplete;
+
+        function initAutocomplete() {
+            let input = document.getElementById('address');
+
+            let cityBounds = new google.maps.LatLngBounds(
+                new google.maps.LatLng(42.9585673, -81.3050062),
+                new google.maps.LatLng(43.0308718, -81.2081544)
+            );
+
+            let options = {
+                bounds: cityBounds,
+                types: ['geocode'],
+                componentRestrictions: { country: "ca" }
+            };
+
+            autocomplete = new google.maps.places.Autocomplete(input, options);
+
+            autocomplete.setFields(['geometry']);
+
+            autocomplete.addListener('place_changed', fillInAddress);
+        }
+
+        function fillInAddress() {
+            console.log(autocomplete.getPlace());
+            
+            console.log(autocomplete.getPlace().geometry.location.lat());
+            console.log(autocomplete.getPlace().geometry.location.lng());
+
+            document.getElementById('latitude').value = autocomplete.getPlace().geometry.location.lat();
+            document.getElementById('longitude').value = autocomplete.getPlace().geometry.location.lng();
+        }
+
+    </script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=my_key&libraries=places&callback=initAutocomplete"></script>
 
 </html>
