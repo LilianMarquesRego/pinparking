@@ -24,12 +24,12 @@
                     <input type="text" class="form-control" id="address" name="address">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group d-none">
                     <label for="latitude">Latitude</label>
                     <input type="text" class="form-control" id="latitude" name="latitude">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group d-none">
                     <label for="longitude">Longitude</label>
                     <input type="text" class="form-control" id="longitude" name="longitude">
                 </div>
@@ -47,38 +47,38 @@
 @endsection
 
 @section('javascript')
-<script>
+{{-- <script>
     let autocomplete;
 
-        function initAutocomplete() {
-            let input = document.getElementById('address');
+    function initAutocomplete() {
+        let input = document.getElementById('address');
 
-            let cityBounds = new google.maps.LatLngBounds(
-                new google.maps.LatLng(42.9585673, -81.3050062),
-                new google.maps.LatLng(43.0308718, -81.2081544)
-            );
+        let cityBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(42.9585673, -81.3050062),
+            new google.maps.LatLng(43.0308718, -81.2081544)
+        );
 
-            let options = {
-                bounds: cityBounds,
-                types: ['geocode'],
-                componentRestrictions: { country: "ca" }
-            };
+        let options = {
+            bounds: cityBounds,
+            types: ['geocode'],
+            componentRestrictions: { country: "ca" }
+        };
 
-            autocomplete = new google.maps.places.Autocomplete(input, options);
+        autocomplete = new google.maps.places.Autocomplete(input, options);
 
-            autocomplete.setFields(['geometry']);
+        autocomplete.setFields(['geometry']);
 
-            autocomplete.addListener('place_changed', fillInAddress);
-        }
+        autocomplete.addListener('place_changed', fillInAddress);
+    }
 
-        function fillInAddress() {
-            console.log(autocomplete.getPlace().geometry.location.lat());
-            console.log(autocomplete.getPlace().geometry.location.lng());
+    function fillInAddress() {
+        console.log(autocomplete.getPlace().geometry.location.lat());
+        console.log(autocomplete.getPlace().geometry.location.lng());
 
-            document.getElementById('latitude').value = autocomplete.getPlace().geometry.location.lat();
-            document.getElementById('longitude').value = autocomplete.getPlace().geometry.location.lng();
-        }
+        document.getElementById('latitude').value = autocomplete.getPlace().geometry.location.lat();
+        document.getElementById('longitude').value = autocomplete.getPlace().geometry.location.lng();
+    }
 
 </script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=my_key&libraries=places&callback=initAutocomplete"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=my_key&libraries=places&callback=initAutocomplete"></script> --}}
 @endsection
