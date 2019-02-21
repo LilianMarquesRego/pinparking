@@ -13,12 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
         factory(Ad::class, 5)->create();
 
         collect(include(database_path('seeds/addresses.php')))->each(function ($address, $index) {
             Ad::find($index+1)->update([
-                'address' => $address
+                'address' => $address[0],
+                'latitude' => $address[1],
+                'longitude' => $address[2],
             ]);
         });
     }
