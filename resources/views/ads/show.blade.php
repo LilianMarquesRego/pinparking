@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('header')
-    <link href="{{ asset('css/ads/index.css') }}" rel="stylesheet">
+<link href="{{ asset('css/ads/index.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
-<div class="container">
     <div class="row">
-      <!-- left side of page-->
+        <!-- left side of page-->
         <div class="col-lg-8">
 
             <!-- image -->
@@ -19,7 +18,7 @@
             <div class="card border-0 shadow mb-4">
                 <div class="card-body">
                     <p class="m-0">Description</p>
-                    <hr> 
+                    <hr>
                     <h5>{{ $ad->description }}</h5>
                 </div>
             </div>
@@ -36,8 +35,15 @@
 
             <!-- address -->
             <div class="card border-0 shadow mb-4">
-                <div id="ADDY" class="text-muted card-body" >{{ $ad->address }}</div>
+                <div id="ADDY" class="text-muted card-body">{{ $ad->address }}</div>
                 <div id="map">
+                </div>
+            </div>
+
+            <!-- address -->
+            <div class="card border-0 shadow mb-4">
+                <div id="" class="text-muted card-body">{{ $owner->phone }}</div>
+                <div id="phone">
                 </div>
             </div>
 
@@ -54,7 +60,5 @@
             <div class="card border-0 shadow mb-4">
             </div>
         </div>
-     
     </div>
-</div>
-@endsection
+@endsection 

@@ -56,19 +56,6 @@ class AdController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Ad  $ad
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Ad $ad)
-    {
-        return view('ads.show', [
-            'ad' => $ad,
-        ]);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Ad  $ad
