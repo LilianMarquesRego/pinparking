@@ -1799,7 +1799,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       spaces: this.data,
-      selected: "latest"
+      selected: "created_at.desc"
     };
   },
   methods: {
@@ -36901,13 +36901,15 @@ var render = function() {
           }
         },
         [
-          _c("option", { attrs: { value: "latest" } }, [_vm._v("newest")]),
+          _c("option", { attrs: { value: "created_at.desc" } }, [
+            _vm._v("newest")
+          ]),
           _vm._v(" "),
-          _c("option", { attrs: { value: "asc" } }, [
+          _c("option", { attrs: { value: "price.asc" } }, [
             _vm._v("price: low to high")
           ]),
           _vm._v(" "),
-          _c("option", { attrs: { value: "desc" } }, [
+          _c("option", { attrs: { value: "price.desc" } }, [
             _vm._v("price: high to low")
           ])
         ]

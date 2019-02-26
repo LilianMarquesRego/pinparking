@@ -9,9 +9,9 @@
         @change="changed"
         v-model="selected"
       >
-        <option value="latest">newest</option>
-        <option value="asc">price: low to high</option>
-        <option value="desc">price: high to low</option>
+        <option value="created_at.desc">newest</option>
+        <option value="price.asc">price: low to high</option>
+        <option value="price.desc">price: high to low</option>
       </select>
     </div>
 
@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       spaces: this.data,
-      selected: "latest"
+      selected: "created_at.desc"
     };
   },
 
