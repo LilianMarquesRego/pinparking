@@ -45,12 +45,7 @@
 
             <!-- email -->
             <div class="card border-0 mb-4 d-none d-lg-block">
-                <div class="card-body">
-                    <textarea style="width:100%; height:9em;"></textarea>
-                    <hr>
-                    <a class="btn btn-block btn-primary mb-3 py-3 text-white">Email
-                    </a>
-                </div>
+                <send-email></send-email>
             </div>
 
             <div class="card border-0 mb-4">
