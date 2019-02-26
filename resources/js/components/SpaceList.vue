@@ -42,8 +42,6 @@ export default {
 
   methods: {
     changed() {
-      console.log(this.selected);
-
       axios
         .get("/ads", {
           params: {

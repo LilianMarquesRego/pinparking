@@ -18,7 +18,6 @@
         crossorigin="anonymous">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/template.css') }}" rel="stylesheet">
 
     @yield ('header')
 </head>

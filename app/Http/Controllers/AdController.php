@@ -18,16 +18,16 @@ class AdController extends Controller
             [$column, $sorted] = explode('.', request('orderBy'));
             return Ad::orderBy($column, $sorted)->get();
         }
-        
+
         return view('ads.index', [
             'ads' => Ad::latest()->get(),
-            ]);
+        ]);
     }
-        
+
     public function show(Ad $ad)
     {
         return view('ads.show', [
-                'ad' => $ad,
-                ]);
+            'ad' => $ad,
+        ]);
     }
 }

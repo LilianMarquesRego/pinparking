@@ -1804,7 +1804,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     changed: function changed() {
-      console.log(this.selected);
       axios.get("/ads", {
         params: {
           orderBy: this.selected
