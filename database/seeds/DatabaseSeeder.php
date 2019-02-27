@@ -4,10 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Ad;
 use App\Json;
 use App\User;
-use Faker\Generator as Faker;
 use App\Transaction;
-use Illuminate\Support\Facades\File;
-use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {

@@ -39,8 +39,7 @@ class User extends Authenticatable
 
     public function ads()
     {
-        return $this->belongsToMany(Ad::class)
-                ->as('transaction')
-                ->withTimestamps();
+        return $this->belongsToMany(Ad::class, 'transactions')
+                ->using(Transaction::class);
     }
 }
