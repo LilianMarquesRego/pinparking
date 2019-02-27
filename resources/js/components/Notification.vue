@@ -20,7 +20,7 @@ export default {
       console.log((App = { user: { id: 1 } }));
 
       axios
-        .post(`/send-email/${App.user.id}`, {
+        .post(`/notification/${App.user.id}`, {
           message: this.message
         })
         .then(this.refresh);

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Notifications\EmailSent;
 
-class SendEmailController extends Controller
+class NotificationController extends Controller
 {
     public function __invoke(User $user)
     {

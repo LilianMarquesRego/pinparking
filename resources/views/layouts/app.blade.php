@@ -20,8 +20,8 @@
 
     <script>
         window.App = {!! json_encode([
-                'user' => Auth::user(),
-                'signedIn' => Auth::check()
+                'user' => auth()->user(),
+                'signedIn' => auth()->check()
             ]) !!};
     </script>
 
@@ -37,7 +37,7 @@
 
     @include ('layouts.footer')
 
-    @yield ('javascript')
+    @yield ('script')
 </body>
 
 </html> 

@@ -1,4 +1,4 @@
-@extends('admin.layouts.app') 
+@extends('admin.layouts.app')
 
 @section('content')
 <div class="container mb-5">
@@ -13,12 +13,12 @@
                     <label for="price">Price</label>
                     <input type="text" class="form-control" id="price" name="price">
                 </div>
-    
+
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea class="form-control" id="description" name="description" rows="4"></textarea>
                 </div>
-    
+
                 <div class="form-group">
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" name="address">
@@ -33,10 +33,10 @@
                     <label for="longitude">Longitude</label>
                     <input type="text" class="form-control" id="longitude" name="longitude">
                 </div>
- 
+
                 <div class="form-group" style="margin-bottom:1.5rem">
                     <label for="image">Upload an image</label>
-                    <input type="file" class="form-control-file" id="image" name="image" >
+                    <input type="file" class="form-control-file" id="image" name="image">
                 </div>
 
                 <button type="submit" class="btn btn-primary px-4">Submit</button>
@@ -46,8 +46,8 @@
 </div>
 @endsection
 
-@section('javascript')
-{{-- <script>
+@section('script')
+<script>
     let autocomplete;
 
     function initAutocomplete() {
@@ -61,7 +61,9 @@
         let options = {
             bounds: cityBounds,
             types: ['geocode'],
-            componentRestrictions: { country: "ca" }
+            componentRestrictions: {
+                country: "ca"
+            }
         };
 
         autocomplete = new google.maps.places.Autocomplete(input, options);
@@ -72,13 +74,9 @@
     }
 
     function fillInAddress() {
-        console.log(autocomplete.getPlace().geometry.location.lat());
-        console.log(autocomplete.getPlace().geometry.location.lng());
-
         document.getElementById('latitude').value = autocomplete.getPlace().geometry.location.lat();
         document.getElementById('longitude').value = autocomplete.getPlace().geometry.location.lng();
     }
-
 </script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=my_key&libraries=places&callback=initAutocomplete"></script> --}}
-@endsection
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=my_key&libraries=places&callback=initAutocomplete"></script>
+@endsection 
