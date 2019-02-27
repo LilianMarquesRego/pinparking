@@ -14,8 +14,9 @@ class Transaction extends JsonResource
     public function toArray($request)
     {
         return [
-            'user' => $this->user,
-            'ad' => $this->ad,
+            'user_id' => $this->user->id,
+            'user_name' => $this->user->name,
+            'address' => $this->ad->address,
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }

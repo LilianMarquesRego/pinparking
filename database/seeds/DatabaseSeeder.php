@@ -4,7 +4,6 @@ use Illuminate\Database\Seeder;
 use App\Ad;
 use App\Json;
 use App\User;
-use App\Transaction;
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,7 +41,7 @@ class DatabaseSeeder extends Seeder
         for ($i = 0; $i < 500; $i++) {
             $user = $users->random();
             
-            $user->ads()->attach($ads->random(), ['created_at' => now()->subMinutes(rand(0, 60*24*365))]);
+            $user->ads('transactions')->attach($ads->random(), ['created_at' => now()->subMinutes(rand(0, 60*24*365))]);
         }
     }
 }

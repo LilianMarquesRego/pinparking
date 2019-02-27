@@ -20,12 +20,18 @@ class AdController extends Controller
 
     public function show(Ad $ad)
     {
-        $response = \Zttp\Zttp::get("https://maps.googleapis.com/maps/api/geocode/json", [
-            'address' => $ad->address,
-            'key' => 'my_key',
-        ]);
+        if (! $ad->latitude) {
+            $location = \Zttp\Zttp::get("https://maps.googleapis.com/maps/api/geocode/json", [
+                'address' => $ad->address,
+                'key' => 'my_key',
+            ])->json()['results'][0]['geometry']['location'];
 
-        dd($response->json()['results'][0]['geometry']['location']);
+            $ad->latitude = $location['lat'];
+
+            $ad->longitude = $location['lng'];
+
+            $ad->save();
+        }
 
         return view('ads.show', [
             'ad' => $ad,

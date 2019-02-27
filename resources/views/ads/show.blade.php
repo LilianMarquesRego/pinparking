@@ -64,15 +64,20 @@
 
         var map = new google.maps.Map(
             document.getElementById('map'), {
-                zoom: 18,
+                zoom: 14,
                 center: space
             });
+            
+        var image = '{{ asset('images/marker.png') }}';
+        console.log(image);
+
 
         var marker = new google.maps.Marker({
             position: space,
-            map: map
+            map: map,
+            icon: '{{ asset("images/marker.png") }}'
         });
     }
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=my_key&callback=initMap"></script>
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=my_key&callback=initMap"></script> -->
 @endsection 
