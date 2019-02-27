@@ -38,10 +38,10 @@ class DatabaseSeeder extends Seeder
         
         $ads = Ad::all();
         
-        for ($i = 0; $i < 500; $i++) {
+        for ($i = 0; $i < 2000; $i++) {
             $user = $users->random();
             
-            $user->ads('transactions')->attach($ads->random(), ['created_at' => now()->subMinutes(rand(0, 60*24*365))]);
+            $user->ads()->attach($ads->random(), ['created_at' => today()->subDays(rand(0, 30))]);
         }
     }
 }

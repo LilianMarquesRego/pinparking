@@ -1,8 +1,5 @@
 <?php
 
-use App\Transaction;
-use App\Http\Resources\Transaction as TransactionResource;
-
 Auth::routes();
 
 Route::redirect('/', 'ads');

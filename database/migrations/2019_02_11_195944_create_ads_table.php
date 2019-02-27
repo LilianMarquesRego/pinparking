@@ -24,6 +24,12 @@ class CreateAdsTable extends Migration
             $table->string('image')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('ad_user', function (Blueprint $table) {
+            $table->string('ad_id');
+            $table->string('user_id');
+            $table->timestamps();
+        });
     }
 
     /**
