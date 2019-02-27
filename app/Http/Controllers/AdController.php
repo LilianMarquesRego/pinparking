@@ -3,15 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Ad;
-use Illuminate\Http\Request;
 
 class AdController extends Controller
 {
-    /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
     public function index()
     {
         if (request()->wantsJson()) {
@@ -26,6 +20,13 @@ class AdController extends Controller
 
     public function show(Ad $ad)
     {
+        $response = \Zttp\Zttp::get("https://maps.googleapis.com/maps/api/geocode/json", [
+            'address' => $ad->address,
+            'key' => 'my_key',
+        ]);
+
+        dd($response->json()['results'][0]['geometry']['location']);
+
         return view('ads.show', [
             'ad' => $ad,
         ]);
