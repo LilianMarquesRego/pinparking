@@ -1,9 +1,10 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Ad;
 use App\User;
 
-$factory->define(App\Ad::class, function (Faker $faker) {
+$factory->define(Ad::class, function (Faker $faker) {
     return [
         'owner_id' => factory(User::class),
         'description' => $faker->paragraph,

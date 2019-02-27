@@ -3,6 +3,11 @@
 use Illuminate\Database\Seeder;
 use App\Ad;
 use App\Json;
+use App\User;
+use Faker\Generator as Faker;
+use App\Transaction;
+use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,14 +18,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(Ad::class, 5)->create();
-
-        collect(include(database_path('seeds/addresses.php')))->each(function ($address, $index) {
-            Ad::find($index+1)->update([
-                'address' => $address[0],
-                'latitude' => $address[1],
-                'longitude' => $address[2],
-            ]);
-        });
+        factory(User::class, 100)->create();
+        
+        $handle = fopen(__DIR__ . "/addresses.txt", "r");
+        
+        $id = 1;
+        
+        if ($handle) {
+            while (($buffer = fgets($handle, 4096)) !== false) {
+                factory(Ad::class)->create([
+                    'owner_id' => $id++,
+                    'address' => trim($buffer),
+                    'image' => $id % 5 . '.png',
+                ]);
+            }
+            if (!feof($handle)) {
+                echo "Error: unexpected fgets() fail\n";
+            }
+            fclose($handle);
+        }
+        
+        $users = User::all();
+        
+        $ads = Ad::all();
+        
+        for ($i = 0; $i < 500; $i++) {
+            $user = $users->random();
+            
+            $user->ads()->attach($ads->random(), ['created_at' => now()->subMinutes(rand(0, 60*24*365))]);
+        }
     }
 }

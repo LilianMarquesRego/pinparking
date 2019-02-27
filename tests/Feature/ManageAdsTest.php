@@ -18,7 +18,7 @@ class ManageAdsTest extends TestCase
         $ad = factory(Ad::class)->create();
         
         $this->get('ads')
-            ->assertSee($ad->address);
+            ->assertSee($ad->price);
     }
 
     /** @test */
@@ -27,25 +27,12 @@ class ManageAdsTest extends TestCase
         $ad = factory(Ad::class)->create();
 
         $this->get(route('ads.show', $ad->id))
-            ->assertSee($ad->address);
+            ->assertSee($ad->price);
     }
 
     /** @test */
     public function an_owner_can_register_a_parking_space()
     {
-        $ad = factory(Ad::class)->make();
-        
-        $this->post(route('ads.store'), $ad->toArray());
-
-        $this->assertDatabaseHas('ads', [
-            'address' => $ad->address,
-        ]);
-    }
-    
-    /** @test */
-    public function an_owner_can_upload_an_image()
-    {
-        $this->withoutExceptionHandling();
         Storage::fake('public');
 
         Storage::disk('public')->makeDirectory('small');
@@ -54,7 +41,7 @@ class ManageAdsTest extends TestCase
         
         $ad = factory(Ad::class)->make();
 
-        $ad = $ad->toArray() + ['image' => $file];
+        $ad = array_merge($ad->toArray(), ['image' => $file]);
 
         $this->post(route('ads.store'), $ad);
 
