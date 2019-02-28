@@ -7,6 +7,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
+use App\User;
 
 class ManageAdsTest extends TestCase
 {
@@ -51,5 +52,30 @@ class ManageAdsTest extends TestCase
 
         Storage::disk('public')->assertExists($file->hashName());
         Storage::disk('public')->assertExists('small/' . $file->hashName());
+    }
+    
+    /** @test */
+    public function a_user_can_softdelete_his_ad()
+    {
+        $user = factory(User::class)->create();
+        
+        $ad = factory(Ad::class)->create(['owner_id' => $user]);
+        factory(Ad::class)->create(['owner_id' => $user]);
+    
+        $user->ads()->attach([1, 1, 2]);
+
+        $this->assertEquals(3, $user->ads->count());
+        
+        $this->delete('ads/1');
+        
+        $this->assertNull(Ad::find(1));
+        $this->assertEquals(1, Ad::count());
+        $this->assertEmpty($ad->fresh()->transactions);
+        $this->assertTrue($ad->fresh()->trashed());
+    }
+    
+    /** @test */
+    public function a_user_can_restore_his_ad()
+    {
     }
 }

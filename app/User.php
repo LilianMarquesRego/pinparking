@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -39,6 +38,8 @@ class User extends Authenticatable
 
     public function ads()
     {
-        return $this->belongsToMany(Ad::class);
+        return $this->belongsToMany(Ad::class, 'transactions')
+            ->as('transactions')
+            ->using(Transaction::class);
     }
 }

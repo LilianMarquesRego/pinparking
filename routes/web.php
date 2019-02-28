@@ -1,11 +1,11 @@
 <?php
 
+use App\User;
+
 Auth::routes();
 
 Route::redirect('/', 'ads');
 
-Route::get('ads', 'AdController@index');
-Route::get('ads/{ad}', 'AdController@show');
-Route::post('notification/{user}', 'NotificationController');
+Route::resource('ads', 'AdController');
 
-Route::resource('admin/ads', 'Admin\AdController');
+Route::post('notification/{user}', 'NotificationController');
