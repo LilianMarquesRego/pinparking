@@ -77,5 +77,18 @@ class ManageAdsTest extends TestCase
     /** @test */
     public function a_user_can_restore_his_ad()
     {
+        $user = factory(User::class)->create();
+        
+        $ad = factory(Ad::class)->create(['owner_id' => $user]);
+        
+        $user->ads()->attach([1, 1]);
+        
+        $this->delete('ads/1');
+        $this->assertEquals(0, Ad::count());
+        $this->assertEmpty($ad->fresh()->transactions);
+        
+        $this->post('restore/ads/1');
+        $this->assertEquals(1, Ad::count());
+        $this->assertEquals(2, $ad->fresh()->transactions->count());
     }
 }

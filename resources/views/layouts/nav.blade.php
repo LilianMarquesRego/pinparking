@@ -23,6 +23,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('ads.create')}}">Post Ad</a>
+                        <a class="dropdown-item" href="{{ route('myads', 1)}}">My Ad</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Log out</a>
                     </div>

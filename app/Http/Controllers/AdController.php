@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Ad;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\User;
 
 class AdController extends Controller
 {
-    public function index()
+    public function index(User $user)
     {
         if (request()->wantsJson()) {
             [$column, $sorted] = explode('.', request('orderBy'));
@@ -67,5 +68,20 @@ class AdController extends Controller
         $ad->delete();
 
         $ad->transactions->each->delete();
+    }
+
+    public function restore($id)
+    {
+        $ad = tap(Ad::withTrashed()->find($id))->restore();
+
+        $ad->transactions()->withTrashed()->get()->each->restore();
+    }
+
+    public function myAds(User $user)
+    {
+        dump($user->ads->count());
+        return view('ads.index', [
+            'ads' => $user->ads,
+        ]);
     }
 }
