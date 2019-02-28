@@ -79,9 +79,8 @@ class AdController extends Controller
 
     public function myAds(User $user)
     {
-        dump($user->ads->count());
-        return view('ads.index', [
-            'ads' => $user->ads,
+        return view('ads.myads', [
+            'ads' => $user->myAds,
         ]);
     }
 }

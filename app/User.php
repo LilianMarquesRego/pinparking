@@ -42,4 +42,9 @@ class User extends Authenticatable
             ->as('transactions')
             ->using(Transaction::class);
     }
+
+    public function myAds()
+    {
+        return $this->hasMany(Ad::class, 'owner_id');
+    }
 }
