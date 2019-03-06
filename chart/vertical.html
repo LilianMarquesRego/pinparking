@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Bar Chart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="users.js"></script>
+    <script src="transactions.js"></script>
+    <script src="moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container" style="width: 75%;">
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+        userNames = users.map(user => user.name).slice(0, 20);
+
+        adsCount = users.map(user => user.ads_count).slice(0, 20);
+
+        // console.log(userAges = users.reduce((values, user) => {
+        //     values[Math.floor(user.age / 10) * 10] = user.ads_count;
+
+        //     return values;
+        // }, {}));
+
+        // console.log(Object.keys(userAges));
+        // console.log(Object.values(userAges));
+
+        var color = Chart.helpers.color;
+        var barChartData = {
+            labels: userNames,
+            // labels: Object.keys(userAges),
+            datasets: [{
+                backgroundColor: color('rgb(255, 99, 132)').alpha(0.5).rgbString(),
+                borderColor: 'rgb(255, 99, 132)',
+                borderWidth: 1,
+                data: adsCount,
+                // data: Object.values(userAges),
+            }]
+
+        };
+
+        window.onload = function () {
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    responsive: true,
+                    legend: {
+                        display: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'User Frequency'
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                min: 0,
+                                max: 40,
+                                stepSize: 10,
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                autoSkip: false
+                            }
+                        }]
+                    },
+                }
+            });
+        };
+
+        // console.log(_.countBy([5, 5, 5, 2, 2, 2, 2, 2, 9, 4]));
+        // https://mikeheavers.com/tutorials/getting_the_most_commonly_repeated_object_value_from_an_array_using_lodash/
+    </script>
+    <script>
+        let daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+        transactionDates = transactions.map(transaction => moment(transaction.created_at).format('MM-DD-YYYY'));
+
+        transactionCount = transactions.map(transaction => transaction.transactions_count);
+
+        console.log(transactionDays = transactions.reduce((values, transaction) => {
+            let day = daysOfWeek[moment(transaction.created_at).day()];
+
+            values[day] = parseInt(transaction.transactions_count) + (day in values ? values[day] : 0);
+
+            return values;
+        }, {}));
+    </script>
+</body>
+
+</html>
