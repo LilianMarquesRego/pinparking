@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
 
+            <!-- THIS IS A COMMENT TO TEST -->
             <h3 class="text-center">Post Ad</h3>
 
             <form action="{{ route('ads.store') }}" method="POST" enctype="multipart/form-data">
@@ -23,7 +24,7 @@
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" name="address">
                 </div>
-
+               
                 <div class="form-group d-none">
                     <label for="latitude">Latitude</label>
                     <input type="text" class="form-control" id="latitude" name="latitude">
