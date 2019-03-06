@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
 
-            <!-- THIS IS A COMMENT TO TEST -->
+           
             <h3 class="text-center">Post Ad</h3>
 
             <form action="{{ route('ads.store') }}" method="POST" enctype="multipart/form-data">
